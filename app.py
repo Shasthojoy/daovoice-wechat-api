@@ -4,6 +4,7 @@ import urllib
 import requests
 import logging
 import jinja2
+import json
 from wsgilog import WsgiLog, LOGNAME
 
 
@@ -61,13 +62,14 @@ class WeixinAuthentication(object):
                                       params=dict(appid=WEIXIN_APP_ID, secret=WEIXIN_APP_SECRET,
                                                   code=query_dict['code'],
                                                   grant_type="authorization_code")).json()
-            # token_info = {"test": "test"}
+            # token_info = {"openid": "testddddddddddddd"}
 
-            LOG.debug("GOT WEIXIN TOKEN %s", token_info)
+
+            data = {"user_id":token_info['openid']}
+            LOG.debug("RENDER DAOVOICE DATA %s",data)
             with open("daovoice_template.html", "r") as f:
-
                 template = jinja2.Template(f.read())
-                return template.render(token_dict={'user_id':token_info['openid']})
+                return template.render(token_dict=data)
 
         else:
             raise web.redirect("/")
