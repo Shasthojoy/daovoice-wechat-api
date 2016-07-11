@@ -67,7 +67,7 @@ class WeixinAuthentication(object):
             with open("daovoice_template.html", "r") as f:
 
                 template = jinja2.Template(f.read())
-                return template.render(token_dict=token_info)
+                return template.render(token_dict={'user_id':token_info['openid']})
 
         else:
             raise web.redirect("/")
