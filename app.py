@@ -65,7 +65,7 @@ class WeixinAuthentication(object):
             # token_info = {"openid": "testddddddddddddd"}
 
 
-            data = {"user_id":token_info['openid']}
+            data = {"user_id":token_info['openid'].encode("utf-8")}
             LOG.debug("RENDER DAOVOICE DATA %s",data)
             with open("daovoice_template.html", "r") as f:
                 template = jinja2.Template(f.read())
