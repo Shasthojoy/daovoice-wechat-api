@@ -42,7 +42,7 @@ def build_weixin_auth_query_string(redirect_uri):
     return "{weixin_auth_url}?appid={appid}&redirect_uri={redirect_uri}&response_type=code&scope=snsapi_base&state=state".format(
         weixin_auth_url=weixin_auth_url,
         appid=WEIXIN_APP_ID,
-        redirect_uri=urllib.quote(redirect_uri)
+        redirect_uri=urllib.quote_plus(redirect_uri)
     )
 
 
