@@ -26,7 +26,7 @@ urls = (
     "/", "WeixinAuthorize",
     "/weixin-redirect", "WeixinAuthentication"
 )
-web.config.update({"debug": True})
+web.config.update({"debug": False})
 
 app = web.application(urls, globals())
 
